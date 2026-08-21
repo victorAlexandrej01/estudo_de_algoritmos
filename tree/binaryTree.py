@@ -40,6 +40,14 @@ class binaryTree:
             return self._search_recursive(node.right,data)
         return self._search_recursive(node.left,data)
 
+    def inorder_traversal(self):
+        return self._inorder_recursive(self.root)
+
+    def _inorder_recursive(self,root):
+        if not root:
+            return []
+        return self._inorder_recursive(root.left) + [root.data] + self._inorder_recursive(root.right)
+
 
 tree = binaryTree()
 root = treeNode(20)
@@ -49,5 +57,7 @@ tree.insert(root.data)
 for value in values:
     tree.insert(value)
 
-print(tree.search(20))  # Output: True
-print(tree.search(100))  # Output: False 
+print(tree.search(20))  
+print(tree.search(100))  
+
+print(tree.inorder_traversal())  # Output: [5, 10, 15, 20, 25, 30, 35]
